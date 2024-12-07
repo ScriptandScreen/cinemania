@@ -8,35 +8,29 @@
 
 ### Development team :
 
-- Viktor Svertoka **Team Lead** development and design of the section **Footer,
+- Gökhan Karaduman **Team Lead** development and design of the section **Footer,
   Scroll Up, Modal Window Team, add local Fonts, custom Cursors, Favicon**
 
-- Yevhenii Lukashov **Scrum Master** development and design of the section
+- Samet Tufan Çalım **Scrum Master** development and design of the section
   **API, Fetch**
 
-- Volodymyr Zhyvun **Front End Developer** development and design of the section
+- Furkan Uçar **Front End Developer** development and design of the section
   **Upcomining mounth**
 
-- Dmytro Samus **Front End Developer** development and design of the section
+- Segah Vahide **Front End Developer** development and design of the section
   **Modal Window Watch Trailer, Loader**
 
-- Vitalii Bashchenko **Front End Developer** development and design of the
+- İskender **Front End Developer** development and design of the
   section **Hero, Slider, Modal Window OOPS**
 
-- Sergiy Yevchihen **Front End Developer** development and design of the section
+- Salih Avcı **Front End Developer** development and design of the section
   **Catalog, Pagination, Search form**
 
-- Nikita Slabushevskiy **Front End Developer** development and design of the
-  section **Weekly Trends**
-
-- Ihor Kulinskyi **Front End Developer** development and design of the section
-  **Header, My Library**
-
-- Kirill Litovchenko **Front End Developer** development and design of the
-  section **Catalog**
-
-- Mariia Ivanova **Front End Developer** development and design of the section
-  **Modal Window Film**
+- Ferhat İpek **Front End Developer** development and design of the section
+  **Catalog, Pagination, Search form**
+  
+- Sudenur **Front End Developer** development and design of the
+  section **Hero, Slider, Modal Window OOPS**
 
 ## We use the following types of commits:
 
@@ -59,7 +53,7 @@ brackets we write the file in which we worked, and in the body of the commit we
 write what we did (changed) etc.
 
 - `Look at`
-  [**Layout (Figma)**](https://www.figma.com/file/z7VY1GvA5xVR2ix7xeOfxx/Cinemania?node-id=0%3A1&t=5JeXJy1vNB96LXPG-1)
+  [**Layout (Figma)**](https://www.figma.com/design/z7VY1GvA5xVR2ix7xeOfxx/Cinemania?t=KomrcVoaZX6L22G2-0)
 
 1. Install the project dependencies in the terminal with the command
    `npm install` .
