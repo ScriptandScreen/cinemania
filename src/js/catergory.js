@@ -80,16 +80,106 @@ function renderMovies(movieList) {
     }" class="movie-img">
       <div class="movie-text-content">
           <h3 class="movie-title">${movie.title || movie.name}</h3>
-          <div class="movie-genre-content">
-              <p class="movie-genre">${genres || "Unknown"}</p>
-              <p class="movie-date">| ${year}</p>
+          <div class="movie-inf-content">
+            <div class="movie-genre-content">
+                <p class="movie-genre">${genres || "Unknown"}</p>
+                <p class="movie-date">| ${year}</p>
+            </div>
+            <div class="stars-container"></div> 
           </div>
       </div>
     `;
     movieContainer.appendChild(li);
+    const starsContainer = li.querySelector(".stars-container");
+    renderStars(starsContainer, movie.vote_average || 0);
   });
 }
 
+// Yıldızlar için oluşturacak fonksiyon 
+
+function renderStars(starsContainer, rating) {
+  const maxStars = 5; // Maksimum yıldız sayısı
+  const scaledRating = (rating / 10) * maxStars; // 10 üzerinden gelen rating'i 5 üzerinden ölçekle
+  const filledStars = Math.floor(scaledRating); // Tam dolu yıldız sayısı
+  const halfStar = scaledRating % 1 >= 0.5; // Yarım yıldız olup olmadığını kontrol et
+
+  starsContainer.innerHTML = ""; // Mevcut yıldızları temizle
+
+  for (let i = 0; i < maxStars; i++) {
+    // SVG elementini oluştur
+    const star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    star.setAttribute("viewBox", "0 0 24 24");
+    star.setAttribute("width", "18");
+    star.setAttribute("height", "16");
+    star.classList.add("star");
+
+    // Gradient tanımları
+    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    const gradient = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "linearGradient"
+    );
+    gradient.setAttribute("id", `gradient-${i}`);
+    gradient.setAttribute("x1", "0");
+    gradient.setAttribute("x2", "1");
+    gradient.setAttribute("y1", "0");
+    gradient.setAttribute("y2", "1");
+
+    const stop1 = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "stop"
+    );
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", "#f84119");
+
+    const stop2 = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "stop"
+    );
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", "rgba(248, 159, 25, 0.68)");
+
+    gradient.appendChild(stop1);
+    gradient.appendChild(stop2);
+    defs.appendChild(gradient);
+    star.appendChild(defs);
+
+    // Yıldız şekli (Path)
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute(
+      "d",
+      "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+    );
+
+    if (i < filledStars) {
+      // Tam dolu yıldız
+      path.setAttribute("fill", `url(#gradient-${i})`);
+      path.setAttribute("stroke", "none");
+    } else if (i === filledStars && halfStar) {
+      // Yarım dolu yıldız
+      path.setAttribute("fill", "url(#gradient-${i})");
+      path.setAttribute(
+        "clip-path",
+        "polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)"
+      );
+      path.setAttribute("stroke", "rgba(248, 159, 25, 0.68)");
+    } else {
+      // Boş yıldız
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "rgba(248, 159, 25, 0.68)");
+      path.setAttribute("stroke-width", "1.5");
+    }
+
+    star.appendChild(path);
+    starsContainer.appendChild(star);
+  }
+}
+
+
+
+
+
+// Search yapıldığında Movie Bulunmazsa Çalışacak JS
 function nonMatchedMovie() {
   movieContainer.innerHTML = `
     <div class="empty-el">
@@ -280,7 +370,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const genreRes = await fetch(GENRES_URL, options);
     const genreData = await genreRes.json();
     genreMap = genreData.genres || [];
-
+ 
     const firstRes = await fetch(`${BASE_URL}?page=1`, options);
     if (!firstRes.ok) throw new Error("1. sayfa alınamadı");
     const firstData = await firstRes.json();
@@ -296,6 +386,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderPage(1);
   } catch (error) {
     console.error("Hata:", error);
-    movieContainer.innerHTML = `<li>Veriler alınırken hata oluştu.</li>`;
+    movieContainer.innerHTML = `
+    <div class=""empty-el>
+      <div class="empty-el-content">
+        <p class="empty-el-text">Veriler alınırken hata oluştu.</p>
+      </div>
+    </div>
+    `;
   }
 });
