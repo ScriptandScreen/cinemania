@@ -123,13 +123,16 @@ function renderStars(starsContainer, rating) {
     gradient.setAttribute("x1", "0");
     gradient.setAttribute("x2", "1");
     gradient.setAttribute("y1", "0");
-    gradient.setAttribute("y2", "1");
+    gradient.setAttribute("y2", "0");
 
     const stop1 = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "stop"
     );
-    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute(
+      "offset",
+      i < filledStars || (i === filledStars && halfStar) ? "50%" : "0%"
+    );
     stop1.setAttribute("stop-color", "#f84119");
 
     const stop2 = document.createElementNS(
@@ -137,7 +140,10 @@ function renderStars(starsContainer, rating) {
       "stop"
     );
     stop2.setAttribute("offset", "100%");
-    stop2.setAttribute("stop-color", "rgba(248, 159, 25, 0.68)");
+    stop2.setAttribute(
+      "stop-color",
+      i <= filledStars ? "rgba(248, 159, 25, 0.68)" : "none"
+    );
 
     gradient.appendChild(stop1);
     gradient.appendChild(stop2);
@@ -151,18 +157,9 @@ function renderStars(starsContainer, rating) {
       "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
     );
 
-    if (i < filledStars) {
-      // Tam dolu yıldız
+    if (i < filledStars || (i === filledStars && halfStar)) {
+      // Tam veya yarım dolu yıldız
       path.setAttribute("fill", `url(#gradient-${i})`);
-      path.setAttribute("stroke", "none");
-    } else if (i === filledStars && halfStar) {
-      // Yarım dolu yıldız
-      path.setAttribute("fill", "url(#gradient-${i})");
-      path.setAttribute(
-        "clip-path",
-        "polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)"
-      );
-      path.setAttribute("stroke", "rgba(248, 159, 25, 0.68)");
     } else {
       // Boş yıldız
       path.setAttribute("fill", "none");
@@ -174,6 +171,7 @@ function renderStars(starsContainer, rating) {
     starsContainer.appendChild(star);
   }
 }
+
 
 
 
