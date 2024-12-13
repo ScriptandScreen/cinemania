@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     movieContainer.innerHTML = `
     <div class=""empty-el>
       <div class="empty-el-content">
-        <p class="empty-el-text">Veriler alınırken hata oluştu.</p>
+        <p class="empty-el-text">Veriler alinirken hata oluştu.</p>
       </div>
     </div>
     `;
