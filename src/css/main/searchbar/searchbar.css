@@ -1,0 +1,43 @@
+.search_conteiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 80px;
+  width: 100%;
+}
+
+#movieName {
+  width: 22.4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--header-text-color);
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  outline: none;
+  background: transparent;
+  color: var(--main-text-color);
+}
+
+#movieName::placeholder {
+  color: var(--header-text-color);
+  font-size: 1.4rem;
+  line-height: 3rem;
+}
+
+#movieYear {
+  display: none;
+  color: var(--main-gray-color);
+  width: 9.5rem;
+  height: 4rem;
+  border-radius: 0.8rem;
+  padding: 1.2rem 2rem;
+}
+#searchButton {
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}

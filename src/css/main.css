@@ -1,0 +1,11 @@
+@import './reset.css';
+@import './styles.css';
+@import './popup/popup-desktop.css';
+@import './header/header-desktop.css';
+@import './main/searchbar/searchbar-desktop.css';
+@import './main/hero/hero-desktop.css';
+@import './main/movieList/movieList-desktop.css';
+@import './category.css';
+@import './footer.css/footer.css';
+@import './footer.css/scroll-up.css';
+@import './main/mouse.css'

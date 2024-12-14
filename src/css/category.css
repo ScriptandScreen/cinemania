@@ -1,7 +1,7 @@
 :root {
     --orange: #f87719;
     --grey: #b7b7b7;
-    --white: #fff;
+    --main-text-color: #fff;
     --background: #111;
     --secondary-text: #f8f8f8;
     --secondary-black: #282828;
@@ -10,9 +10,7 @@
     --second-family: "Montserrat", sans-serif;
     --third-family: "Gilroy", sans-serif;
 }
-body{
-    background-color: var(--background);
-}
+
 .movie-section{
     margin: 0 auto;
 }
@@ -21,7 +19,7 @@ body{
     padding:48px 32px;
 }
 
-
+/* ------------------SEARCH BUTTON AREA---------------- */
 .search-container {
     display:flex;
     justify-content: center;
@@ -34,11 +32,11 @@ body{
 }
 #search-input{
     position: relative;
-    border: 1px solid var(--white);
+    border: 1px solid var(--main-text-color);
     border-radius: 8px;
     padding: 15px 24px;
     width: 334px;
-    height: 24px;
+    height: 56px;
     font-family: var(--font-family);
     font-weight: 500;
     font-size: 16px;
@@ -48,14 +46,14 @@ body{
 }
 #clear-btn {
     position: absolute;
-    top: 20px;
+    top: 7px;
     right: 32%;
     /* Input alanının sağ köşesinde olacak */
     transform: translateY(-50%, -50%);
     background: none;
     border: none;
     font-size: 18px;
-    color: var(--white);
+    color: var(--main-text-color);
     cursor: pointer;
     display: none;
     /* Başlangıçta gizli */
@@ -63,11 +61,17 @@ body{
 
 
 #search-btn{
-    width: 48px;
-    height: 48px;
+    position: relative;
+    width: 56px;
+    height: 56px;
     border-radius: 100%;
     background: linear-gradient(145deg, #ffc226 0%, #f84119 100%);
     border: none;
+}
+#search-btn > svg{
+    position: absolute;
+    top:30%;
+    left:30%;
 }
 /* -----------------------MOVİE CONTENT AREA---------------------------- */
 
@@ -119,7 +123,7 @@ body{
     font-weight: 500;
     font-size: 20px;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--main-text-color);
     z-index: 2;
 }
 .movie-genre-content{
@@ -155,6 +159,11 @@ body{
     /* Biraz üst-alt boşluk */
     gap:16px;
 }
+#next-btn > svg,
+#prev-btn > svg{
+
+    fill: var(--main-text-color);
+}
 
 .pagination-btn,
 .page-btn{
@@ -162,8 +171,9 @@ body{
     height: 40px;
     border-radius: 100%;
     border:1px solid var(--grey);
-    color:var(--white);
-    background-color:transparent
+    color:var(--main-text-color);
+    background-color:transparent;
+    padding:0;
 }
 .active{
     background: linear-gradient(145deg, #ffc226 0%, #f84119 100%);
@@ -185,8 +195,8 @@ body{
     align-items: center;
 
     /* Genel stiller */
-    color: var(--white);
-    border: 1px solid var(--white);
+    color: var(--main-text-color);
+    border: 1px solid var(--main-text-color);
     border-radius: 8px;
     padding: 12px 20px;
     /* İçerik için boşluk */
@@ -210,62 +220,95 @@ body{
 
 /* Placeholder için gri renk */
 #year-select option[value="All"] {
-    color: var(--white);
+    color: var(--main-text-color);
 }
 
 .loading-content {
-    position: relative;
-    width: 100px;
-    /* Boyutu ayarlayabilirsiniz */
-    height: 100px;
-    margin: 50px auto;
-    /* Ortalansın */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    background: transparent;
+    backdrop-filter: blur(8px);
+    /* Blur efekti */
+
+    &.is-active {
+        display: block;
+    }
 }
 
-.loading-content::before,
-.loading-content::after {
-    content: '';
+.loading-content .loader {
     position: absolute;
-    border: 4px solid transparent;
-    /* Saydamlık */
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    animation: spin 1.5s linear infinite;
+    perspective: 800px;
+    z-index: 9999;
 }
 
-.loading-content::before {
-    width: 80px;
-    height: 80px;
-    border-top: 4px solid #e50914;
-    /* Netflix kırmızısı */
-    border-right: 4px solid #f5a623;
-    /* Diğer bir renk */
+.loading-content .spinner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 
-.loading-content::after {
-    width: 50px;
-    height: 50px;
-    border-left: 4px solid #1db954;
-    /* Spotify yeşili */
-    border-bottom: 4px solid #3f51b5;
-    /* Bir başka renk */
-    animation-direction: reverse;
-    /* Ters yöne dönsün */
+.loading-content .spinner.inner__one {
+    left: 0%;
+    top: 0%;
+    animation: rotate-one 1s linear infinite;
+    border-bottom: 3px solid orange;
 }
 
-/* Loading animasyonları */
-@keyframes spin {
+.loading-content .spinner.inner__two {
+    right: 0%;
+    top: 0%;
+    animation: rotate-two 1s linear infinite;
+    border-right: 3px solid orange;
+}
+
+.loading-content .spinner.inner__three {
+    right: 0%;
+    bottom: 0%;
+    animation: rotate-three 1s linear infinite;
+    border-top: 3px solid orange;
+}
+
+@keyframes rotate-one {
     0% {
-        transform: rotate(0deg);
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
     }
 
     100% {
-        transform: rotate(360deg);
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
     }
 }
 
+@keyframes rotate-two {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-three {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}
 .empty-el {
     display: flex;
     justify-content: center;
@@ -296,7 +339,7 @@ body{
     font-size: 32px;
     line-height: 112%;
     text-align: center;
-    color: var(--white);
+    color: var(--main-text-color);
     margin: 10px 0;
     /* Her paragraf arasına boşluk ekler */
 }
@@ -335,80 +378,7 @@ button {
     z-index: 0;
 }
 
-/* Hover sırasında arka planı linear-gradient ile değiştir */
-button:hover,
-button:focus {
-    background: linear-gradient(145deg, #ffc226 0%, #f84119 100%);
-}
 
-/* Hover sırasında yıldız efektleri */
-button:hover::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 10%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    animation: expand-stars 0.8s ease-out forwards;
-    pointer-events: none;
-    z-index: -1;
-}
-
-button::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, #ffc226 2px, transparent 2px),
-        radial-gradient(circle, #f84119 2px, transparent 2px);
-    background-size: 10px 10px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-button:hover::after {
-    opacity: 1;
-    animation: star-scatter 1s ease-out forwards;
-}
-
-/* Yıldızların genişlemesi */
-@keyframes expand-stars {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-    }
-
-    100% {
-        width: 200%;
-        height: 200%;
-        opacity: 0;
-    }
-}
-
-/* Yıldızların saçılma animasyonu */
-@keyframes star-scatter {
-    0% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 1;
-    }
-
-    50% {
-        transform: translate(-50%, -50%) scale(1.2);
-        opacity: 0.6;
-    }
-
-    100% {
-        transform: translate(calc(-50% + 20px), calc(-50% + 20px)) scale(1.5);
-        opacity: 0;
-    }
-}
 
 .movie-inf-content{
     display: flex;
@@ -459,4 +429,63 @@ button:hover::after {
     stroke: rgba(248, 159, 25, 0.68);
     /* Kenar çizgisi */
     stroke-width: 1.5;
+}
+@media (min-width: 768px) and (max-width: 1280px) {
+    .star {
+        width: 12px;
+        height: 12px;
+    }
+
+    .movie-title {
+        font-size: 12px;
+    }
+
+    .movie-genre,
+    .movie-date {
+        font-size: 12px;
+    }
+    .container{
+        width: initial;
+    }
+}
+@media (max-width: 768px) {
+    .movie-list{
+        margin: 0 auto;
+        margin-top:16px;
+    }
+    .movie-list-item {
+        flex: 1 1 calc(100% / 1);
+        /* Ekran küçüldüğünde 1 eleman bir satırda */
+        max-width: calc(100% / 1);
+    }
+    .movie-title{
+        font-size: 12px;
+    }
+    .movie-genre,
+    .movie-date{
+        font-size: 12px;
+    }
+    #search-input{
+        width: 173px;
+        height: 40px;
+    }
+    #year-select{
+        width: 95px;
+        height: 40px;
+    }
+    #search-btn{
+        height: 40px;
+        width: 40px;
+    }
+    #search-btn > svg{
+        width: 40%;
+    }
+    .section-pagination .pagination{
+        gap:12px;
+    }
+    .pagination-btn,
+    .page-btn{
+        width: 32px;
+        height: 32px;
+    }
 }

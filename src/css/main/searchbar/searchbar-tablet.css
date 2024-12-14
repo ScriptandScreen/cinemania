@@ -1,0 +1,23 @@
+/* TABLET */
+@media (min-width: 768px) {
+    .search_conteiner {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-top: 60px;
+      line-height: 1.641rem;
+    }
+  
+    #movieName {
+      width: 18.8rem;
+      height: 4.4rem;
+    }
+  
+    #movieYear {
+      width: 9.5rem;
+      height: 4.4rem;
+    }
+    #searchButton {
+      width: 4.4rem;
+      height: 4.4rem;
+    }
+  }

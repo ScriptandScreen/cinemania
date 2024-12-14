@@ -1,0 +1,9 @@
+@import url('searchbar.css');
+@import url('searchbar-tablet.css');
+
+@media (min-width: 1280px) {
+    #searchButton {
+      width: 4.8rem;
+      height: 4.8rem;
+    }
+  }

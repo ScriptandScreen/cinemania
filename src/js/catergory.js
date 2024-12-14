@@ -355,7 +355,13 @@ async function fetchAllPagesAtOnce() {
 
 function showLoading(isLoading) {
   if (isLoading) {
-    movieContainer.innerHTML = `<li class="loading-content"></li>`;
+    movieContainer.innerHTML = `<div class="loading-content is-active">
+  <div class="loader">
+    <div class="spinner inner__one"></div>
+    <div class="spinner inner__two"></div>
+    <div class="spinner inner__three"></div>
+  </div>
+</div>`;
   } else {
     const loadingMsg = movieContainer.querySelector("li");
     if (loadingMsg) loadingMsg.remove();
@@ -387,7 +393,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     movieContainer.innerHTML = `
     <div class=""empty-el>
       <div class="empty-el-content">
-        <p class="empty-el-text">Veriler alinirken hata oluştu.</p>
+        <p class="empty-el-text">Veriler alınırken hata oluştu.</p>
       </div>
     </div>
     `;
