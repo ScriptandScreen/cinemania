@@ -8,7 +8,7 @@
 
 ### Development team :
 
-- Gökhan Karaduman **Team Lead** development and design of the section **Catalog, Footer,Scroll Up,Pagination, custom Cursors, Favicon, API, Loader**
+- Gökhan Karaduman **Team Lead** development and design of the section **Catalog, Footer, Scroll Up, Pagination, Custom Cursors, Favicon, API, Loader**
 
 - Ferhat İpek **Scrum Master** development and design of the section
   **API, Fetch, Home Page, UPCOMING THIS MONTH**
