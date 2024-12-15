@@ -1,0 +1,92 @@
+@import url("libraryList.css");
+@import url("libraryList-tablet.css");
+
+@media (min-width: 1280px) {
+    #film-category {
+        width: 26rem;
+        height: 4.8rem;
+        font-size: 1.6rem;
+    }
+    .empty-library-title {
+        font-size: 3.2rem;
+    }
+}
+#film-category {
+    width: 17.3rem;
+    height: 4rem;
+    border-radius: 0.8rem;
+    color: var(--main-text-color);
+    background-color: var(--main-background);
+    align-self: start;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 4em 0 2em 2em;
+    padding-left: 1em;
+    font-size: 1.4rem;
+}
+
+.load-more-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin: 24px auto 0;
+}
+
+.search-movie-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px auto 0;
+}
+
+.empty-library-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.empty-library-title {
+    font-size: 2rem;
+}
+
+.removed-message {
+    text-align: center;
+}
+
+.removed-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1.6rem;
+}
+
+@media (min-width: 768px) {
+    .load-more-button {
+        margin: 40px auto 0;
+    }
+
+    .empty-library-title {
+        font-size: 2.4rem;
+    }
+
+    .removed-message-container {
+        position: absolute;
+    }
+}
+
+@media (min-width: 1280px) {
+    #film-category {
+        width: 26rem;
+        height: 4.8rem;
+        font-size: 1.6rem;
+    }
+
+    .empty-library-title {
+        font-size: 3.2rem;
+    }
+}

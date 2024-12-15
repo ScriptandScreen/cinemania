@@ -1,0 +1,27 @@
+html {
+    cursor: url('../../public/cursor-orange-black.svg'), pointer;
+}
+
+a {
+    cursor: url('../../public/cursor-orange-white.svg'), pointer;
+}
+
+button {
+    cursor: url('../../public/cursor-orange-white.svg'), pointer;
+}
+
+a:hover {
+    cursor: url('../../public/cursor-orange-white.svg'), pointer;
+}
+
+button:hover {
+    cursor: url('../../public/cursor-orange-white.svg'), pointer;
+}
+
+svg:hover {
+    cursor: url('../../public/cursor-orange-white.svg'), pointer;
+}
+
+.header__theme-switcher:hover {
+    cursor: url('../../public/cursor-orange-white.svg'), pointer;
+}
